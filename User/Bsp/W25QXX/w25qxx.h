@@ -1,74 +1,74 @@
-/*
- * spi1.h
- *
- *  Created on: Oct 29, 2022
- *      Author: Haozi
- */
-#ifndef MYPROJECT_W25Q64_W25QXX_H_
-#define MYPROJECT_W25Q64_W25QXX_H_
-
-#include "bsp.h"
-
-// 25ÏµÁĞFLASHĞ¾Æ¬³§ÉÌÓëÈİÁ¿´úºÅ£¨³§ÉÌ´úºÅEF£©
-#define W25Q80 			0XEF13
-#define W25Q16 			0XEF14
-#define W25Q32 			0XEF15
-#define W25Q64 			0XEF16
-#define W25Q128 		0XEF17
-#define W25Q256 		0XEF18
-#define EX_FLASH_ADD 	0x000000 		// W25Q64µÄµØÖ·ÊÇ24Î»¿í
-extern uint16_t W25QXX_TYPE;			// ¶¨ÒåW25QXXĞ¾Æ¬ĞÍºÅ
-extern SPI_HandleTypeDef hspi1;
-
-// ********************* Ö¸Áî±í ************************* //
-// Ğ´Ê¹ÄÜ Óë Ğ´½ûÖ¹
-#define W25X_WriteEnable 			0x06
-#define W25X_WriteDisable 			0x04
-// ¶ÁÈ¡×´Ì¬¼Ä´æÆ÷123µÄÃüÁî
-#define W25X_ReadStatusReg1 		0x05
-#define W25X_ReadStatusReg2 		0x35
-#define W25X_ReadStatusReg3 		0x15
-// Ğ´×´Ì¬¼Ä´æÆ÷123µÄÃüÁî
-#define W25X_WriteStatusReg1 		0x01
-#define W25X_WriteStatusReg2 		0x31
-#define W25X_WriteStatusReg3 		0x11
-// ¶ÁÈ¡Êı¾İÖ¸Áî
-#define W25X_ReadData 				0x03
-#define W25X_FastReadData 			0x0B
-#define W25X_FastReadDual 			0x3B
-#define W25X_PageProgram 			0x02
-#define W25X_BlockErase 			0xD8
-// ÉÈÇø²Á³ıÖ¸Áî
-#define W25X_SectorErase 			0x20
-// Æ¬²Á³ıÃüÁî
-#define W25X_ChipErase 			0xC7
-#define W25X_PowerDown 			0xB9
-#define W25X_ReleasePowerDown 	0xAB
-#define W25X_DeviceID 				0xAB
-#define W25X_ManufactDeviceID 	0x90
-#define W25X_JedecDeviceID 		0x9F
-// ½øÈë4×Ö½ÚµØÖ·Ä£Ê½Ö¸Áî
-#define W25X_Enable4ByteAddr 		0xB7
-#define W25X_Exit4ByteAddr 		0xE9
-
-
-void W25QXX_CS(uint8_t a);							// W25QXXÆ¬Ñ¡Òı½Å¿ØÖÆ
-uint8_t SPI1_ReadWriteByte(uint8_t TxData);		// SPI1×ÜÏßµ×²ã¶ÁĞ´
-uint16_t W25QXX_ReadID(void);						// ¶ÁÈ¡FLASH ID
-uint8_t W25QXX_ReadSR(uint8_t regno);				// ¶ÁÈ¡×´Ì¬¼Ä´æÆ÷
-void W25QXX_Write_SR(uint8_t regno,uint8_t sr);	// Ğ´×´Ì¬¼Ä´æÆ÷
-void W25QXX_Write_Enable(void);					// Ğ´Ê¹ÄÜ
-void W25QXX_Write_Disable(void);					// Ğ´±£»¤
-uint8_t W25QXX_Init(void);							// ³õÊ¼»¯W25QXXº¯Êı
-void W25QXX_Wait_Busy(void);						// µÈ´ı¿ÕÏĞ
-// ¶ÁÈ¡flash
-void W25QXX_Read(uint8_t* pBuffer,uint32_t ReadAddr,uint16_t NumByteToRead);
-// Ğ´Èëflash
-void W25QXX_Write_Page(uint8_t* pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite);
-void W25QXX_Write_NoCheck(uint8_t* pBuffer,uint32_t WriteAddr,uint16_t NumByteToWrite);
-void W25QXX_Write(uint8_t* pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite);
-// ²Á³ıflash
-void W25QXX_Erase_Chip(void);						// ÕûÆ¬²Á³ı
-void W25QXX_Erase_Sector(uint32_t Dst_Addr);		// ÉÈÇø²Á³ı
-
-#endif /* MYPROJECT_W25Q64_W25QXX_H_ */
+/*
+ * spi1.h
+ *
+ *  Created on: Oct 29, 2022
+ *      Author: Haozi
+ */
+#ifndef MYPROJECT_W25Q64_W25QXX_H_
+#define MYPROJECT_W25Q64_W25QXX_H_
+
+#include "bsp.h"
+
+// 25ç³»åˆ—FLASHèŠ¯ç‰‡å‚å•†ä¸å®¹é‡ä»£å·ï¼ˆå‚å•†ä»£å·EFï¼‰
+#define W25Q80 			0XEF13
+#define W25Q16 			0XEF14
+#define W25Q32 			0XEF15
+#define W25Q64 			0XEF16
+#define W25Q128 		0XEF17
+#define W25Q256 		0XEF18
+#define EX_FLASH_ADD 	0x000000 		// W25Q64çš„åœ°å€æ˜¯24ä½å®½
+extern uint16_t W25QXX_TYPE;			// å®šä¹‰W25QXXèŠ¯ç‰‡å‹å·
+extern SPI_HandleTypeDef hspi1;
+
+// ********************* æŒ‡ä»¤è¡¨ ************************* //
+// å†™ä½¿èƒ½ ä¸ å†™ç¦æ­¢
+#define W25X_WriteEnable 			0x06
+#define W25X_WriteDisable 			0x04
+// è¯»å–çŠ¶æ€å¯„å­˜å™¨123çš„å‘½ä»¤
+#define W25X_ReadStatusReg1 		0x05
+#define W25X_ReadStatusReg2 		0x35
+#define W25X_ReadStatusReg3 		0x15
+// å†™çŠ¶æ€å¯„å­˜å™¨123çš„å‘½ä»¤
+#define W25X_WriteStatusReg1 		0x01
+#define W25X_WriteStatusReg2 		0x31
+#define W25X_WriteStatusReg3 		0x11
+// è¯»å–æ•°æ®æŒ‡ä»¤
+#define W25X_ReadData 				0x03
+#define W25X_FastReadData 			0x0B
+#define W25X_FastReadDual 			0x3B
+#define W25X_PageProgram 			0x02
+#define W25X_BlockErase 			0xD8
+// æ‰‡åŒºæ“¦é™¤æŒ‡ä»¤
+#define W25X_SectorErase 			0x20
+// ç‰‡æ“¦é™¤å‘½ä»¤
+#define W25X_ChipErase 			0xC7
+#define W25X_PowerDown 			0xB9
+#define W25X_ReleasePowerDown 	0xAB
+#define W25X_DeviceID 				0xAB
+#define W25X_ManufactDeviceID 	0x90
+#define W25X_JedecDeviceID 		0x9F
+// è¿›å…¥4å­—èŠ‚åœ°å€æ¨¡å¼æŒ‡ä»¤
+#define W25X_Enable4ByteAddr 		0xB7
+#define W25X_Exit4ByteAddr 		0xE9
+
+
+void W25QXX_CS(uint8_t a);							// W25QXXç‰‡é€‰å¼•è„šæ§åˆ¶
+uint8_t SPI1_ReadWriteByte(uint8_t TxData);		// SPI1æ€»çº¿åº•å±‚è¯»å†™
+uint16_t W25QXX_ReadID(void);						// è¯»å–FLASH ID
+uint8_t W25QXX_ReadSR(uint8_t regno);				// è¯»å–çŠ¶æ€å¯„å­˜å™¨
+void W25QXX_Write_SR(uint8_t regno,uint8_t sr);	// å†™çŠ¶æ€å¯„å­˜å™¨
+void W25QXX_Write_Enable(void);					// å†™ä½¿èƒ½
+void W25QXX_Write_Disable(void);					// å†™ä¿æŠ¤
+uint8_t W25QXX_Init(void);							// åˆå§‹åŒ–W25QXXå‡½æ•°
+void W25QXX_Wait_Busy(void);						// ç­‰å¾…ç©ºé—²
+// è¯»å–flash
+void W25QXX_Read(uint8_t* pBuffer,uint32_t ReadAddr,uint16_t NumByteToRead);
+// å†™å…¥flash
+void W25QXX_Write_Page(uint8_t* pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite);
+void W25QXX_Write_NoCheck(uint8_t* pBuffer,uint32_t WriteAddr,uint16_t NumByteToWrite);
+void W25QXX_Write(uint8_t* pBuffer, uint32_t WriteAddr, uint16_t NumByteToWrite);
+// æ“¦é™¤flash
+void W25QXX_Erase_Chip(void);						// æ•´ç‰‡æ“¦é™¤
+void W25QXX_Erase_Sector(uint32_t Dst_Addr);		// æ‰‡åŒºæ“¦é™¤
+
+#endif /* MYPROJECT_W25Q64_W25QXX_H_ */
